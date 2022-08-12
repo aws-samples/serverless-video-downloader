@@ -5,11 +5,16 @@
     <AWSProjectType>Lambda</AWSProjectType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
-   <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.7.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.0.0" />
-    <PackageReference Include="AWSSDK.S3" Version="3.3.111.14" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="YoutubeExplode" Version="5.1.1" />
+    <None Remove="template.yaml" />
+  </ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Amazon.Lambda.Core" Version="2.1.0" />
+	  <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="2.1.0" />
+	  <PackageReference Include="AWSSDK.S3" Version="3.7.9.38" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="YoutubeExplode" Version="6.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="template.yaml" />
   </ItemGroup>
 </Project>
