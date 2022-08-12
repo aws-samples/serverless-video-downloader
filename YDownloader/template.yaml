@@ -2,13 +2,47 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: Lambda handler for API Gateway - youtube downloader
 Resources:
+  LambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - apigateway.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /      
+      Policies:
+        - PolicyName: lambda-invoke
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'lambda:InvokeFunction'
+                Resource: '*'  
+        - PolicyName: s3-access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                 - 's3:*'
+                 - 's3-object-lambda:*'
+                Resource: '*'
   LambdaFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: YDownloader::YDownloader.Function::FunctionHandler
+      CodeUri: bin/Debug/netcoreapp3.1/publish
       Runtime: dotnetcore3.1           
+      FunctionName: youtube-downloader
       Description: Lambda handler for API Gateway - Youtube uploader
       MemorySize: 512
+      Role: !GetAtt LambdaRole.Arn  
       Timeout: 60
       Events:
         AddVideoApi:
