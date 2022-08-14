@@ -29,7 +29,7 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
       x-amazon-apigateway-integration:
-        credentials: "arn:aws:iam::[your-aws-account-no]:role/lambda_invoke_function_assume_apigw_role"
+        credentials: "arn:aws:iam::[your-aws-account-no]:role/lambda-invoke-assume-apigw"
         uri: "arn:aws:apigateway:us-east-1:lambda:path//2015-03-31/functions/arn:aws:lambda:us-east-1:[your-aws-account-no]:function:youtube-downloader/invocations"
         responses:
           default:
