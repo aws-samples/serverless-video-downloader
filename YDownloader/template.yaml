@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: Lambda handler for API Gateway - youtube downloader
-Resources:
-  RoleName: lambda-invoke-assume-apigw
+Resources:  
   LambdaRole:
     Type: 'AWS::IAM::Role'
     Properties:
+      RoleName: lambda-invoke-assume-apigw
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
